@@ -1,22 +1,32 @@
 //be able to interact with our application
+const api = require('./api.js');
+console.log(api);
 
-const superagent = require('superagent');
+const prompts = require('prompts');
 
-const base = 'https://www.themealdb.com/api/json';
+
+//demo or sample from class
+/* const _discardPrompt = async (recipes) => {
+    return await prompts([{
+        type: 'multiselect',
+        name: 'cards',
+        message: 'select cards to throw away',
+        choices: []
+    }]);
+}; */
 //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
 
-const getRecipe = async (recipeName) => {
+/* const getRecipe = async (recipeName) => {
     try {
-        const recipeURL = `${base}/v1/1/search.php?s=${recipeName}`;
+        const recipeURL = `${api.base}/v1/1/search.php?s=${recipeName}`;
         console.log(recipeURL);
 
-        const res = await superagent.get(recipeURL);
+        const res = await api.superagent.get(recipeURL);
         console.log(res.body);
 
         return res.body;
     } catch (error) {
         console.log(error);
     }
-};
-
-getRecipe('Pizza');
+}; */
+api.getCategory('Goat');
