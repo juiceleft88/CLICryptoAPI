@@ -2,11 +2,12 @@ const yargs = require('yargs/yargs');
 
 const app = require('./app.js');
 
+
 yargs(process.argv.slice(2))
     .usage('$0: Usage <command> [options]')
     .command(
         //command
-        'search <Category>', 
+        'search <category>', 
         //description for command
         'search for a recipe by category', 
         //builder function to build out command arguments and options
@@ -17,7 +18,7 @@ yargs(process.argv.slice(2))
             //second argument is an options object
             return (
                 yargs
-                    .positional('Category', {
+                    .positional('category', {
                         describe: 'name of the recipe category',
                         type: 'string',
                         choices: ['Beef', 'Chicken', 'Dessert', 'Lamb', 'Miscellaneous', 'Pasta', 'Pork', 'Seafood', 'Side', 
@@ -34,9 +35,13 @@ yargs(process.argv.slice(2))
         }, 
         //handler function for handling parsed command, command arguments, and options
         (args) => {
-            console.log(args);
+            if (args.category === 'Beef'){
+                app.searchPrompt(args);
+            }
+            //invoke function for this
         }
-    ).help()
+    )
+    .help()
     //help() builds a menu using the details from our yargs setup
     //argv gets the arguments as a plain Javascript object and passes them to handler (when used)
     .argv;
