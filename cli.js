@@ -1,4 +1,5 @@
 const yargs = require('yargs/yargs');
+const { getCategory } = require('./api.js');
 
 const app = require('./app.js');
 
@@ -35,8 +36,14 @@ yargs(process.argv.slice(2))
         }, 
         //handler function for handling parsed command, command arguments, and options
         (args) => {
-            if (args.category === 'Beef'){
-                app.searchPrompt(args);
+            const choice = ['Beef', 'Chicken', 'Dessert', 'Lamb', 'Miscellaneous', 'Pasta', 'Pork', 'Seafood', 'Side', 
+                'Starter', 'Vegan', 'Vegetarian', 'Breakfast', 'Goat'];
+            
+            if(choice.includes(args.category)){
+                getCategory(`${args.category}`);
+            }
+            else{
+                console.log('This is not a category');
             }
             //invoke function for this
         }
