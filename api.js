@@ -22,7 +22,7 @@ const getCategory = async (category) => {
         const categoryURL = `${base}/v1/1/filter.php?c=${category}`;
         
         const res = await superagent.get(categoryURL);
-        console.log(res.body);
+        //console.log(res.body);
         return res.body;
     
     } catch (error) {

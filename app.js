@@ -5,13 +5,13 @@ const prompts = require('prompts');
 
 
 
-const searchPrompt = async (category) => {
-    const displayCategories = category.map((cat) => {
-        return {recipeName: `${cat.strMeal}`, id: cat.idMeal};
+const _searchPrompt = async (results) => {
+    const displayCategories = results.map((result) => {
+        return {title: `${result.strMeal}`, value: result.idMeal};
     });
     return await prompts([
         {
-            type: 'multiselect',
+            type: 'select',
             name: 'Recipe Categories',
             message: 'Select the recipe category to explore',
             choices: displayCategories
@@ -20,7 +20,16 @@ const searchPrompt = async (category) => {
 };
 //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
 
+const search = async (args) => {
+    //retrieves the meails from the api based on what the user entered
+    const result = await api.getCategory(args)
+    //passes the meals array from the result to the search prompt
+    const searchPrompt = await _searchPrompt(result.meals);
+    console.log(result.meals);
+}
+
+
 module.exports = {
     //same as getRecipe : getRecipe
-    searchPrompt
+    search
 };

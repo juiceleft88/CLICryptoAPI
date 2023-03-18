@@ -1,5 +1,6 @@
 const yargs = require('yargs/yargs');
 const { getCategory } = require('./api.js');
+const { search } = require('./app.js');
 
 const app = require('./app.js');
 
@@ -40,7 +41,7 @@ yargs(process.argv.slice(2))
                 'Starter', 'Vegan', 'Vegetarian', 'Breakfast', 'Goat'];
             
             if(choice.includes(args.category)){
-                getCategory(`${args.category}`);
+                search(`${args.category}`);
             }
             else{
                 console.log('This is not a category');
