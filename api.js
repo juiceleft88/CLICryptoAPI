@@ -2,10 +2,11 @@ const superagent = require('superagent');
 
 const base = 'https://www.themealdb.com/api/json';
 //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
+//www.themealdb.com/api/json/v1/1/lookup.php?i
 
-/* const getRecipe = async (recipeName) => {
+const getRecipe = async (recipeName) => {
     try {
-        const recipeURL = `${base}/v1/1/search.php?s=${recipeName}`;
+        const recipeURL = `${base}/v1/1/lookup.php?i=${recipeName}`;
         console.log(recipeURL);
 
         const res = await superagent.get(recipeURL);
@@ -15,7 +16,7 @@ const base = 'https://www.themealdb.com/api/json';
     } catch (error) {
         console.log(error);
     }
-}; */
+}; 
 
 const getCategory = async (category) => {
     try {
@@ -32,6 +33,6 @@ const getCategory = async (category) => {
 
 module.exports = {
     //same as getRecipe : getRecipe
-    getCategory
+    getCategory, getRecipe
 };
 
