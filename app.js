@@ -13,7 +13,7 @@ const _searchPrompt = async (results) => {
         {
             type: 'select',
             name: 'Recipe Categories',
-            message: 'Select the recipe category to explore',
+            message: 'Select the specific recipe to explore',
             choices: displayCategories
         }
     ]);
