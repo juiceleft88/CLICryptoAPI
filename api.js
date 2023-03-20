@@ -15,13 +15,14 @@ const getCategory = async (category) => {
         
         const res = await superagent.get(categoryURL);
         //console.log(res.body);
-        const displayCat = res.body.meals;
+        /* const displayCat = res.body.meals;
         //console.log(displayCat);
         const result = extractValue(displayCat, 'strMeal');
         const mealId = extractValue(displayCat, 'idMeal');
-        //console.log(result);
-        //console.log(mealId);
-        return result;
+        const categoryObjects = Object.values(res.body.meals);
+        console.log(categoryObjects[1].strMeal); */
+
+        return res.body;
     
     } catch (error) {
         console.log(error);
@@ -33,8 +34,9 @@ const getRecipe = async (recipeId) => {
         const recipeURL = `${base}/v1/1/lookup.php?i=${recipeId}`;
         const resRecipe = await superagent.get(recipeURL);
         const recipe = resRecipe.body.meals;
+        const result = extractValue(recipe, 'strMeal');
         console.log(recipe);
-        return recipe;
+        return result;
     
     } catch (error) {
         console.log(error);

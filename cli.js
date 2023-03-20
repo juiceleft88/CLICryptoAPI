@@ -1,6 +1,6 @@
 const yargs = require('yargs/yargs');
 const { getCategory } = require('./api.js');
-
+const { search } = require('./app.js');
 const app = require('./app.js');
 
 
@@ -28,10 +28,6 @@ yargs(process.argv.slice(2))
                     //options aka flags that exist on our command
                     //first argument is the short or long form for the option name (ex: long form)
                     //alias is opposite form of the first argument (ex: short form)
-                    .options('neat form', {
-                        alias: 'n',
-                        describe: 'the neat form of recipe without unnecessary information',
-                    })
             );
         }, 
         //handler function for handling parsed command, command arguments, and options
@@ -40,8 +36,7 @@ yargs(process.argv.slice(2))
                 'Starter', 'Vegan', 'Vegetarian', 'Breakfast', 'Goat'];
             
             if(choice.includes(args.category)){
-                app.searchPrompt(`${args.category}`);
-                console.log('Hi There');
+                app.search(`${args.category}`);
             }
             else{
                 console.log('This is not a category');
