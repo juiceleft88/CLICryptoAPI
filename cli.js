@@ -40,7 +40,8 @@ yargs(process.argv.slice(2))
                 'Starter', 'Vegan', 'Vegetarian', 'Breakfast', 'Goat'];
             
             if(choice.includes(args.category)){
-                getCategory(`${args.category}`);
+                app.searchPrompt(`${args.category}`);
+                console.log('Hi There');
             }
             else{
                 console.log('This is not a category');

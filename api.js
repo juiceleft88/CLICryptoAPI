@@ -3,27 +3,38 @@ const superagent = require('superagent');
 const base = 'https://www.themealdb.com/api/json';
 //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
 
-/* const getRecipe = async (recipeName) => {
-    try {
-        const recipeURL = `${base}/v1/1/search.php?s=${recipeName}`;
-        console.log(recipeURL);
+const extractValue = (array, property) => {
+    let extractedValue = array.map(item => item[property]);
+    return extractedValue;
+};
 
-        const res = await superagent.get(recipeURL);
-        console.log(res.body);
-
-        return res.body;
-    } catch (error) {
-        console.log(error);
-    }
-}; */
 
 const getCategory = async (category) => {
     try {
         const categoryURL = `${base}/v1/1/filter.php?c=${category}`;
         
         const res = await superagent.get(categoryURL);
-        console.log(res.body);
-        return res.body;
+        //console.log(res.body);
+        const displayCat = res.body.meals;
+        //console.log(displayCat);
+        const result = extractValue(displayCat, 'strMeal');
+        const mealId = extractValue(displayCat, 'idMeal');
+        //console.log(result);
+        //console.log(mealId);
+        return result;
+    
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const getRecipe = async (recipeId) => {
+    try {
+        const recipeURL = `${base}/v1/1/lookup.php?i=${recipeId}`;
+        const resRecipe = await superagent.get(recipeURL);
+        const recipe = resRecipe.body.meals;
+        console.log(recipe);
+        return recipe;
     
     } catch (error) {
         console.log(error);
@@ -32,6 +43,9 @@ const getCategory = async (category) => {
 
 module.exports = {
     //same as getRecipe : getRecipe
-    getCategory
+    getCategory,
+    getRecipe
 };
 
+//getRecipe(52772);
+//getCategory('Seafood');
