@@ -3,6 +3,8 @@ const api = require('./api.js');
 
 const prompts = require('prompts');
 
+const { saveSearchHistory } = require('./history');
+
 
 
 const _searchPrompt = async (results) => {
@@ -23,6 +25,8 @@ const _searchPrompt = async (results) => {
 const search = async (args) => {
     //retrieves the meails from the api based on what the user entered
     const result = await api.getCategory(args)
+    saveSearchHistory(args, result.meals.length);
+
     //passes the meals array from the result to the search prompt
     const selected = await _searchPrompt(result.meals);
     //console.log(selected['Recipe Categories']);
