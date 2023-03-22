@@ -21,38 +21,29 @@ const _selectMeal = async (options) => {
             }
         ]);
     } catch {
-        console.log('Not a valid meal category');
+        console.log('No valid options to select for this meal search');
     }
 };
 
-const _searchRecipe = async (mealId) => {
-    try {
-        console.log(mealId);
-        const recipe = await api.returnRecipe(mealId);
-        return recipe;
-
-    } catch (error){
-        console.log(error);
-    }
-}
 const searchMeal = async (args) => {                  // arguments user passes in         
     try {
-  
-        // we are we destructuring but then using the dot notation still?
-        const {category} = args;
+        
         const mealCategories = await api.filterByCategory(args.category);
-
+        // call a storefunction provided by our History.js 
+        // store the category in our search key
+        // store a count for resultCount
+        
         const meal = await _selectMeal(mealCategories);
         const id = meal.mealSelection;
         
-        const details = await _searchRecipe(id);
+        const details = await api.returnRecipe(id);
        
-        console.log(details.meals);
+        console.log(details);
 
 
 
-    } catch (error) {
-        console.log(error);
+    } catch {
+        console.log('Invalid meal category');
     } 
 };
 
@@ -60,5 +51,5 @@ const searchMeal = async (args) => {                  // arguments user passes i
 
 module.exports = {
     searchMeal,            // set it equal to an object. Using short hand notation here (objects)
-    _searchRecipe
 };       
+
