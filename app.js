@@ -48,6 +48,7 @@ const search = async (args) => {
     //console.log(res.meals);
     const recipeFull = await api.getRecipe(selected['Recipe Categories']);
 
+    return res;
 };
 
 module.exports = {

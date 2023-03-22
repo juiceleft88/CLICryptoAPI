@@ -48,3 +48,5 @@ yargs(process.argv.slice(2))
     //help() builds a menu using the details from our yargs setup
     //argv gets the arguments as a plain Javascript object and passes them to handler (when used)
     .argv;
+
+//console.log(app.search(yargs.args));
