@@ -1,9 +1,7 @@
 const prompts = require('prompts');
-
 const api = require('./api.js');
-
 const superagent = require('superagent');               // HTTP request
-
+const history = require('./history.js');
 
 // application logic
 const _selectMeal = async (options) => {
@@ -21,7 +19,7 @@ const _selectMeal = async (options) => {
             }
         ]);
     } catch {
-        console.log('No valid options to select for this meal search');
+        console.log('Not a valid meal category');
     }
 };
 
@@ -29,12 +27,12 @@ const searchMeal = async (args) => {                  // arguments user passes i
     try {
         
         const mealCategories = await api.filterByCategory(args.category);
-        // call a storefunction provided by our History.js 
-        // store the category in our search key
-        // store a count for resultCount
-        
         const meal = await _selectMeal(mealCategories);
+        
+        let result = mealCategories.length; 
         const id = meal.mealSelection;
+        
+        await history.saveSearch(args.category, result);
         
         const details = await api.returnRecipe(id);
        
@@ -43,7 +41,7 @@ const searchMeal = async (args) => {                  // arguments user passes i
 
 
     } catch {
-        console.log('Invalid meal category');
+        console.log('Try again with a valid meal category');
     } 
 };
 

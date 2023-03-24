@@ -1,6 +1,6 @@
 const yargs = require('yargs/yargs');                   // using yargs to parse our arguments
 
-const app = require('./app');                         // accessing local module on our computer. app.js has exported an object
+const app = require('./app');                           // accessing local module on our computer. app.js has exported an object
 
 yargs(process.argv.slice(2))                            // process object (retrives arguments). interested in elements beyone the first two
     // $0 expands file name
@@ -20,7 +20,7 @@ yargs(process.argv.slice(2))                            // process object (retri
                 })
         }, 
         //handler function 
-        (args) => {                         // args is the argument that is passed in from the CLI. yargs is parsing this data
+        (args) => {                                      // args is the argument that is passed in from the CLI. yargs is parsing this data
         // search for a meal. Direct the flow to the API
             app.searchMeal(args);     // we have the app object. 
         }
