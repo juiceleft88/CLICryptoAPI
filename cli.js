@@ -1,5 +1,5 @@
 const yargs = require('yargs/yargs');
-const { getCategory } = require('./api.js');
+const { getCategory } = require('recipes-api');
 const { search } = require('./app.js');
 
 const app = require('./app.js');

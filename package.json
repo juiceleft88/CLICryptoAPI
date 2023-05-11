@@ -18,7 +18,7 @@
   "homepage": "https://github.com/juiceleft88/CLI_Recipes_API#readme",
   "dependencies": {
     "prompts": "^2.4.2",
-    "superagent": "^8.0.9",
+    "recipes-api": "file:../recipes-api",
     "yargs": "^17.7.1"
   }
 }

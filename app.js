@@ -1,5 +1,5 @@
 //be able to interact with our application
-const api = require('./api.js');
+const recipes = require('recipes-api');
 
 const prompts = require('prompts');
 
@@ -24,14 +24,14 @@ const _searchPrompt = async (results) => {
 
 const search = async (args) => {
     //retrieves the meails from the api based on what the user entered
-    const result = await api.getCategory(args)
+    const result = await recipes.getCategory(args)
     saveSearchHistory(args, result.meals.length);
 
     //passes the meals array from the result to the search prompt
     const selected = await _searchPrompt(result.meals);
     //console.log(selected['Recipe Categories']);
 
-    const recipeDetails = await api.getRecipe(selected['Recipe Categories']);
+    const recipeDetails = await recipes.getRecipe(selected['Recipe Categories']);
 
     //console.log(result.meals);
 }
